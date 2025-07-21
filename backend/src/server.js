@@ -13,22 +13,27 @@ const __dirname = path.resolve();
 
 //middleware
 if (process.env.NODE_ENV !== "production") {
-  app.use(cors({ origin: "http://localhost:5173" }));
+  app.use(
+    cors({
+      origin: "http://localhost:5173",
+    })
+  );
 }
+
+app.use(express.json()); //this middleware will parse JSON bodies: req.body
 
 //our simple custom middleware
 // app.use((req, re, next) => {
 //   console.log(`Req method is ${req.method} & Req URL is ${req.url}`);
 //   next();
-// });
-app.use(express.json()); //this middleware will parse JSON bodies: req.body
+
 app.use("/api/notes", noteRoutes);
 
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 if (process.env.NODE_ENV === "production") {
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+    res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
   });
 }
 
