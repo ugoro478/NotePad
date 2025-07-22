@@ -1,5 +1,6 @@
 import React from "react";
 import HomePage from "./pages/HomePage";
+import "./index.css";
 import CreatePage from "./pages/CreatePage";
 import NoteDetailsPage from "./pages/NoteDetailsPage";
 import { Route, Routes } from "react-router-dom";
